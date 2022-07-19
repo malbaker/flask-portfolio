@@ -28,4 +28,4 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY_ENDVR }}
           SSH_IP: ${{ secrets.SSH_IP }}
       - name: Deploy site
-        run: ssh my-vm './${{ secrets.PROJECT_ROOT }}/redeploy-site.sh'
+        run: ssh my-vm '~/redeploy-site.sh'
