@@ -29,3 +29,9 @@ jobs:
           SSH_IP: ${{ secrets.SSH_IP }}
       - name: Deploy site
         run: ssh my-vm '~/redeploy-site.sh'
+      
+      - name: Send Discord message
+        if: ${{ failure() }}
+          run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚨 Deployment Failed"
+        if: ${{ success() }}
+          run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
